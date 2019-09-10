@@ -33,9 +33,9 @@ app.use('/api/users', userRoutes);
 app.use('/api/todos', todoRoutes);
 
 // Invalid request
-app.use((req, res, next) => {
-  res.status(404).send('We think you are lost');
-})
+// app.use((req, res, next) => {
+//   res.status(404).send('We think you are lost');
+// })
 
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
