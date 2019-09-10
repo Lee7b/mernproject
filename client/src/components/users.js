@@ -46,7 +46,7 @@ class Users extends React.Component {
           email: this.state.email
         };
 
-        await axios.post('http://localhost:5000/api/users', obj)
+        await axios.post('/api/users', obj)
             .then(res => console.log(res.data));
         
         //Update list after create
@@ -55,7 +55,7 @@ class Users extends React.Component {
 
     async onDelete(e, id) {
         e.preventDefault();
-        let url = 'http://localhost:5000/api/users/' + id
+        let url = '/api/users/' + id
         await axios.delete(url)
             .then(console.log('deleted'))
             .catch(err => console.log(err))
@@ -65,7 +65,7 @@ class Users extends React.Component {
     }
 
     updateList() {
-        axios.get('http://localhost:5000/api/users').then(response => {
+        axios.get('/api/users').then(response => {
             console.log(response.data);
             this.setState({ users: response.data })
         })
