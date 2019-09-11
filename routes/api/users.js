@@ -12,8 +12,8 @@ router.get('/', (req,res) => {
 // Create new user
 router.post('/', (req,res) => {
     const user = new User(req.body)
-    user.save(function (err) {
-        if (err) return res.send('error');
+    user.save((err) => {
+        if (err) return res.send(err);
         res.send('User created');
     })
 })
@@ -28,10 +28,10 @@ router.put('/:id', (req, res) => {
             user.email = req.body.email;
 
             user.save().then(user => {
-                res.send('Updated');
+                res.send(user + ' Updated');
             })
             .catch(err => {
-                res.status(400).send('Unable to update');
+                res.status(400).send(err);
             })
         }
     })
@@ -39,7 +39,7 @@ router.put('/:id', (req, res) => {
 
 // Delete by ID
 router.delete('/:id', (req,res) => {
-    User.remove({
+    User.deleteOne({
         _id: req.params.id
     }, (err, user) => {
         if (err) return res.status(404).send(err)

@@ -40,7 +40,8 @@ class Users extends React.Component {
         };
 
         await axios.post('/api/users', obj)
-            .then(res => console.log(res.data));
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
         
         //Update list after create
         this.updateList();
@@ -50,7 +51,7 @@ class Users extends React.Component {
         e.preventDefault();
         let url = '/api/users/' + id
         await axios.delete(url)
-            .then(console.log('deleted'))
+            .then(res => console.log(res.data))
             .catch(err => console.log(err))
 
         //Update list after the delete
@@ -58,13 +59,11 @@ class Users extends React.Component {
     }
 
     updateList() {
-        axios.get('/api/users').then(response => {
-            console.log(response.data);
-            this.setState({ users: response.data })
+        axios.get('/api/users').then(res => {
+            console.log(res.data);
+            this.setState({ users: res.data })
         })
-        .catch(function (error) {
-            console.log(error);
-        });        
+        .catch(err => console.log(err));
     }
 
     render() {
@@ -78,9 +77,8 @@ class Users extends React.Component {
                             Name: {name}
                             <br />
                             Email: {email}
-                            <Modal id={_id} name={name} email={email}/>
-                            <MDBBtn size="sm" color="danger" onClick={e => this.onDelete(e, _id)}>
-                            Delete</MDBBtn>
+                            <Modal id={_id} name={name} email={email} updateList={this.updateList} />
+                            <MDBBtn className="ml-0" size="sm" color="danger" onClick={e => this.onDelete(e, _id)} style={{width:"100px"}}>Delete</MDBBtn>      
                         </MDBListGroupItem>
                     ))}
                 </MDBListGroup>
