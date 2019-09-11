@@ -23,9 +23,7 @@ app.use((err, req, res, next) => {
 })
 
 //Import routes
-// const itemRoutes = require('./routes/api/items');
 const userRoutes = require('./routes/api/users');
-const todoRoutes = require('./routes/api/todos');
 
 //Routes
 // app.use('/api/items', itemRoutes);
