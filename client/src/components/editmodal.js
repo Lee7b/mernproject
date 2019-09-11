@@ -9,8 +9,8 @@ class ModalPage extends Component {
 
     this.state = {
       modal: false,
-      name: "",
-      email: ""
+      name: this.props.name,
+      email: this.props.email
     }
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
