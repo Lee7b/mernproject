@@ -1,6 +1,7 @@
 import React from 'react';
 import { MDBListGroup, MDBListGroupItem, MDBContainer, MDBInput, MDBBtn } from 'mdbreact';
 import axios from 'axios';
+import Modal from './editmodal';
 
 class Users extends React.Component {
     constructor(props) {
@@ -22,14 +23,6 @@ class Users extends React.Component {
     componentDidMount() {
         this.updateList();
     }
-
-    // Edit Modal Toggle
-    toggle(id) {
-        this.setState({
-          modal: !this.state.modal,
-          id: id
-        });
-      }
 
     onChangeName(e) {
         this.setState({name: e.target.value});
@@ -85,8 +78,7 @@ class Users extends React.Component {
                             Name: {name}
                             <br />
                             Email: {email}
-                            <MDBBtn className="ml-5" size="sm" color="warning">
-                            Edit</MDBBtn>
+                            <Modal id={_id} name={name} email={email}/>
                             <MDBBtn size="sm" color="danger" onClick={e => this.onDelete(e, _id)}>
                             Delete</MDBBtn>
                         </MDBListGroupItem>
