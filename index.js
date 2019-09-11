@@ -26,9 +26,7 @@ app.use((err, req, res, next) => {
 const userRoutes = require('./routes/api/users');
 
 //Routes
-// app.use('/api/items', itemRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/todos', todoRoutes);
 
 // Invalid request
 // app.use((req, res, next) => {
